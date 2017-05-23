@@ -1,0 +1,57 @@
+{
+  "project": {
+    "version": "1.0.4",
+    "name": "toolbox"
+  },
+  "apps": [
+    {
+      "root": "",
+      "outDir": "dist",
+      "assets": [
+        "demo/media"
+      ],
+      "index": "demo/demo.html",
+      "main": "demo/bootstrap.ts",
+      "test": "spec/test.ts",
+      "tsconfig": "tsconfig.json",
+      "styles": [
+      ],
+      "scripts": [
+      ],
+      "environmentSource": "demo/environments/environment.ts",
+      "environments": {
+        "dev": "demo/environment.ts",
+        "prod": "demo/environment.prod.ts"
+      }
+    }
+  ],
+  "addons": [
+  ],
+  "packages": [],
+  "e2e": {
+    "protractor": {
+      "config": "protractor.conf.js"
+    }
+  },
+  "test": {
+    "karma": {
+      "config": "karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "scss",
+    "prefixInterfaces": false,
+    "inline": {
+      "style": false,
+      "template": true
+    },
+    "spec": {
+      "class": false,
+      "component": true,
+      "directive": true,
+      "module": false,
+      "pipe": true,
+      "service": true
+    }
+  }
+}
