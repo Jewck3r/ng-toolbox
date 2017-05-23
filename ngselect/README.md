@@ -1,6 +1,6 @@
 # NgSelect
 
-#### Improt 
+#### Import 
 ```
 @NgModule({
     ....
