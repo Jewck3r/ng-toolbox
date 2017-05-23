@@ -1,0 +1,70 @@
+<ng-template #defaultItemContent let-entry="entry">
+    <input *ngIf="box.name" type="radio" class="ng-select__control" name="{{ box.name }}" [value]="entry.value" [id]="'ngSelectItem_' + entry.value">
+    <label [for]="'ngSelectItem_' + entry.value" style="width: 100%; height: 100%;">
+        {{ box.toString ? box.toString(entry) : entry.item }}
+    </label>
+</ng-template>
+
+<ng-template #defaultSelectedContent let-entry="entry">
+    {{ box.toString ? box.toString(entry) : entry.item }}
+</ng-template>
+
+<ng-template #defaultFallbackContent>
+    {{ box.defaultText || 'Please choose' }}
+</ng-template>
+
+<div class="ng-select" (click)="toggleMenu($event)" #ngSelect>
+    <div [style.background-image]="bypassImage(selected)"
+         [ngClass]="{
+            'ng-select__item': true,
+            'ng-select__item--selected': true,
+            'ng-select__item--thumbnail': selected?.image?.path && selected?.image?.valid !== false
+         }">
+        <ng-container *ngIf="!selected"
+                      [ngTemplateOutlet]="fallbackContent || defaultFallbackContent"
+                      [ngOutletContext]="{
+                        entry: null,
+                        selected: false,
+                        empty: true
+                      }">
+        </ng-container>
+        <ng-container *ngIf="selected"
+                      [ngTemplateOutlet]="itemSelectedContent || itemContent || defaultSelectedContent"
+                      [ngOutletContext]="{
+                        entry: selected,
+                        selected: true,
+                        empty: false
+                      }">
+        </ng-container>
+    </div>
+    <div class="ng-select__list" [style.display]="(isOpen) ? 'block' : 'none'">
+        <div *ngIf="box.fallbackFirst !== false" class="ng-select__item ng-select__item--disabled">
+            <ng-container [ngTemplateOutlet]="fallbackContent || defaultFallbackContent"
+                          [ngOutletContext]="{
+                            entry: null,
+                            selected: false,
+                            empty: true
+                          }">
+            </ng-container>
+        </div>
+        <div *ngFor="let entry of box.items"
+            [ngClass]="{
+                'ng-select__item': true,
+                'ng-select__item--active': entry.active,
+                'ng-select__item--thumbnail': entry.image?.path && entry.image?.valid !== false
+            }"
+            (click)="select(entry)"
+            [style.background-image]="bypassImage(entry)">
+            <ng-container [ngTemplateOutlet]="itemContent || defaultItemContent"
+                          [ngOutletContext]="{
+                            entry: entry,
+                            selected: entry.active,
+                            empty: false
+                          }">
+            </ng-container>
+        </div>
+    </div>
+    <div class="ng-select__preload-area">
+        <img *ngFor="let entry of getImagePrerequisites()" [src]="bypassUrl(entry)" (error)="entry.image.valid = false" />
+    </div>
+</div>
