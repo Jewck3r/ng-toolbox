@@ -1,7 +1,17 @@
 # NgSelect
 
+#### Improt 
+```
+@NgModule({
+    ....
+    imports: [
+       NgSelectModule,
+    ],
+    ...
+})
+```
 
-
+#### Usage
 ```html
 <ng-select [box]="selectBoxObject" 
            (change?)="onChange($event)"
@@ -13,10 +23,11 @@
 
 `?` = optional
 
-**Select box example:**
+**Select box object example:**
 
 ```
 name?: 'formFieldName',
+defaultText?: 'choose an item',
 toString?: (item: NgSelectOption<any>) => {
     return item.item.title;
 },
