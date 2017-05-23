@@ -1,0 +1,108 @@
+$box-padding: 12px 25px 12px 5px;
+
+@mixin border-radius($border, $radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+    border: $border;
+}
+
+@mixin active-item() {
+    font-size: 10px;
+    margin-left: -12px;
+    content: '\2714';
+}
+
+.ng-select {
+    @include border-radius(1px solid #bbb, 4px);
+
+    overflow: visible;
+    position: relative;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20fill%3D%22%23555555%22%20%0A%09%20width%3D%2224px%22%20height%3D%2224px%22%20viewBox%3D%22-261%20145.2%2024%2024%22%20style%3D%22enable-background%3Anew%20-261%20145.2%2024%2024%3B%22%20xml%3Aspace%3D%22preserve%22%3E%0A%3Cpath%20d%3D%22M-245.3%2C156.1l-3.6-6.5l-3.7%2C6.5%20M-252.7%2C159l3.7%2C6.5l3.6-6.5%22%2F%3E%0A%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    text-align: left;
+
+    &::-ms-expand {
+        display: none;
+    }
+
+    .ng-select__list {
+        @include border-radius(1px solid #bbb, 4px);
+
+        display: none;
+        position: absolute;
+        z-index: 800;
+        top: 5px;
+        left: -10px;
+        margin: 0;
+        padding: 0;
+        width: 99%;
+        list-style-type: none;
+        background-color: #ededed;
+        -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.75);
+        box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.75);
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=99)";
+        filter: alpha(opacity=99);
+        -moz-opacity: 0.99;
+        -khtml-opacity: 0.99;
+        opacity: 0.99;
+    }
+
+    .ng-select__item {
+        list-style: none;
+        padding: 5px 3px 5px 20px;
+
+        &:not(.ng-select__item--disabled) {
+            cursor: pointer;
+
+            &:hover:not(.ng-select__item--selected) {
+                background-color: dodgerblue;
+                color: #fff;
+
+                &:not(.ng-select__item--thumbnail):before {
+                    @include active-item();
+                }
+            }
+        }
+    }
+
+    .ng-select__item--thumbnail {
+        padding-left: 60px !important;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-position: 0 0;
+        -webkit-background-size: 54px 60px;
+        -moz-background-size: 54px 60px;
+        -o-background-size: 54px 60px;
+        background-size: 54px 60px;
+    }
+
+    .ng-select__item--active:not(.ng-select__item--thumbnail):before {
+        @include active-item();
+    }
+
+    .ng-select__item--disabled {
+        color: #666;
+    }
+
+    .ng-select__item--selected {
+        padding: $box-padding;
+    }
+
+    .ng-select__preload-area,
+    .ng-select__preload-area *,
+    .ng-select__control {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+
+        @media print {
+            display: none;
+        }
+    }
+}
