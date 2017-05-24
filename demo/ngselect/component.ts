@@ -51,7 +51,7 @@ export class NgSelectDemoComponent implements OnInit {
                     path: 'demo/media/img1.jpg'
                 },
                 item: {
-                    title: 'Image 1'
+                    title: 'Image 1<br /><small>subtitle</small>'
                 }
             }, {
                 value: 2,
@@ -59,7 +59,7 @@ export class NgSelectDemoComponent implements OnInit {
                     path: 'demo/media/img2.jpg'
                 },
                 item: {
-                    title: 'Image 1'
+                    title: 'Image 2 with an way longer text then usual<br /><small>and some html</small>'
                 }
             }]
         };
