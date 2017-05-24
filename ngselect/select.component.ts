@@ -42,9 +42,13 @@ export class NgSelectComponent {
 
     public select(item: NgSelectOption<any>): void {
         if (item) {
+            if (this.selected) {
+                this.selected.active = false;
+            }
+
             item.active = true;
-            this.change.emit(item);
             this.selected = item;
+            this.change.emit(item);
         }
     }
 

@@ -1,12 +1,11 @@
 <ng-template #defaultItemContent let-entry="entry">
     <input *ngIf="box.name" type="radio" class="ng-select__control" name="{{ box.name }}" [value]="entry.value" [id]="'ngSelectItem_' + entry.value">
-    <label [for]="'ngSelectItem_' + entry.value" style="width: 100%; height: 100%;">
-        {{ box.toString ? box.toString(entry) : entry.item }}
+    <label [for]="'ngSelectItem_' + entry.value" style="width: 100%; height: 100%;" [innerHTML]="box.toString ? box.toString(entry) : entry.item">
     </label>
 </ng-template>
 
 <ng-template #defaultSelectedContent let-entry="entry">
-    {{ box.toString ? box.toString(entry) : entry.item }}
+    <span [innerHTML]="box.toString ? box.toString(entry) : entry.item"></span>
 </ng-template>
 
 <ng-template #defaultFallbackContent>

@@ -9,8 +9,9 @@ $box-padding: 12px 25px 12px 5px;
 
 @mixin active-item() {
     font-size: 10px;
-    margin-left: -12px;
     content: '\2714';
+    margin-left: -15px;
+    padding-right: 6px;
 }
 
 .ng-select {
@@ -55,7 +56,7 @@ $box-padding: 12px 25px 12px 5px;
 
     .ng-select__item {
         list-style: none;
-        padding: 5px 3px 5px 20px;
+        padding: 5px 3px 5px 21px;
 
         &:not(.ng-select__item--disabled) {
             cursor: pointer;
@@ -67,6 +68,12 @@ $box-padding: 12px 25px 12px 5px;
                 &:not(.ng-select__item--thumbnail):before {
                     @include active-item();
                 }
+
+                ~ .ng-select__item--active:before {
+                    margin: 0;
+                    padding: 0;
+                    content: '';
+                }
             }
         }
     }
@@ -75,7 +82,7 @@ $box-padding: 12px 25px 12px 5px;
         padding-left: 60px !important;
         background-repeat: no-repeat;
         background-attachment: scroll;
-        background-position: 0 0;
+        background-position: left center;
         -webkit-background-size: 54px 60px;
         -moz-background-size: 54px 60px;
         -o-background-size: 54px 60px;
@@ -92,6 +99,10 @@ $box-padding: 12px 25px 12px 5px;
 
     .ng-select__item--selected {
         padding: $box-padding;
+    }
+
+    .ng-select__control {
+        display: none;
     }
 
     .ng-select__preload-area,
