@@ -1,4 +1,7 @@
-import {Component, Output, Input, EventEmitter, ViewChild, ElementRef, HostListener, TemplateRef} from '@angular/core';
+import {
+    Component, Output, Input, EventEmitter, ViewChild, ElementRef, HostListener, TemplateRef, OnChanges,
+    SimpleChanges
+} from '@angular/core';
 import {DomSanitizer, SafeStyle, SafeUrl} from '@angular/platform-browser';
 import {NgSelectOption} from './selectbox';
 import {NgSelectBox} from './selectbox';
@@ -8,7 +11,7 @@ import {NgSelectBox} from './selectbox';
     templateUrl: 'select.component.html',
     styleUrls: ['style.scss']
 })
-export class NgSelectComponent {
+export class NgSelectComponent implements OnChanges {
 
     @Output() public change: EventEmitter<NgSelectOption<any>> = new EventEmitter<NgSelectOption<any>>();
     @Input() public box: NgSelectBox<any>;
@@ -26,9 +29,23 @@ export class NgSelectComponent {
 
     @HostListener('document:click', ['$event'])
     public blurMenu(event): void {
-        if (this.isOpen && event.target !== this.element.nativeElement) {
+        if (this.isOpen && (this.selected || event.target !== this.element.nativeElement)) {
             this.toggleMenu(null);
         }
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes['selectedItem']) {
+            if (this.selectedItem >= this.box.items.length) {
+                return;
+            }
+
+            this.select(this.box.items[this.selectedItem]);
+        }
+    }
+
+    public getSelected(): NgSelectOption<any> {
+        return this.selected || (this.selected = this.box.items.find(item => item.active));
     }
 
     public toggleMenu(event: any): void {

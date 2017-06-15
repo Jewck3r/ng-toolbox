@@ -13,13 +13,13 @@
 </ng-template>
 
 <div class="ng-select" (click)="toggleMenu($event)" #ngSelect>
-    <div [style.background-image]="bypassImage(selected)"
+    <div [style.background-image]="bypassImage(getSelected())"
          [ngClass]="{
             'ng-select__item': true,
             'ng-select__item--selected': true,
-            'ng-select__item--thumbnail': selected?.image?.path && selected?.image?.valid !== false
+            'ng-select__item--thumbnail': getSelected()?.image?.path && getSelected()?.image?.valid !== false
          }">
-        <ng-container *ngIf="!selected"
+        <ng-container *ngIf="!getSelected()"
                       [ngTemplateOutlet]="fallbackContent || defaultFallbackContent"
                       [ngOutletContext]="{
                         entry: null,
@@ -27,10 +27,10 @@
                         empty: true
                       }">
         </ng-container>
-        <ng-container *ngIf="selected"
+        <ng-container *ngIf="getSelected()"
                       [ngTemplateOutlet]="itemSelectedContent || itemContent || defaultSelectedContent"
                       [ngOutletContext]="{
-                        entry: selected,
+                        entry: getSelected(),
                         selected: true,
                         empty: false
                       }">

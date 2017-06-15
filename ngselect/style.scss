@@ -8,10 +8,8 @@ $box-padding: 12px 25px 12px 5px;
 }
 
 @mixin active-item() {
-    font-size: 10px;
     content: '\2714';
-    margin-left: -15px;
-    padding-right: 6px;
+    margin-left: -1.1em;
 }
 
 .ng-select {
@@ -32,7 +30,7 @@ $box-padding: 12px 25px 12px 5px;
     }
 
     .ng-select__list {
-        @include border-radius(1px solid #bbb, 4px);
+        @include border-radius(1px solid #aaa, 4px);
 
         display: none;
         position: absolute;
@@ -55,38 +53,38 @@ $box-padding: 12px 25px 12px 5px;
     }
 
     .ng-select__item {
+        font-size: 1em;
         list-style: none;
-        padding: 5px 3px 5px 21px;
+        padding: 5px 3px 5px 25px;
+
+        &:before {
+            content: '';
+            white-space: pre;
+        }
 
         &:not(.ng-select__item--disabled) {
             cursor: pointer;
+            * { cursor: pointer; }
 
             &:hover:not(.ng-select__item--selected) {
                 background-color: dodgerblue;
-                color: #fff;
 
                 &:not(.ng-select__item--thumbnail):before {
                     @include active-item();
-                }
-
-                ~ .ng-select__item--active:before {
-                    margin: 0;
-                    padding: 0;
-                    content: '';
                 }
             }
         }
     }
 
     .ng-select__item--thumbnail {
-        padding-left: 60px !important;
+        padding-left: 65px !important;
         background-repeat: no-repeat;
         background-attachment: scroll;
-        background-position: left center;
-        -webkit-background-size: 54px 60px;
-        -moz-background-size: 54px 60px;
-        -o-background-size: 54px 60px;
-        background-size: 54px 60px;
+        background-position: left top;
+        -webkit-background-size: 56px 100%;
+        -moz-background-size: 56px 100%;
+        -o-background-size: 56px 100%;
+        background-size: 56px 100%;
     }
 
     .ng-select__item--active:not(.ng-select__item--thumbnail):before {
