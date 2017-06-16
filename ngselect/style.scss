@@ -55,11 +55,10 @@ $box-padding: 12px 25px 12px 5px;
     .ng-select__item {
         font-size: 1em;
         list-style: none;
-        padding: 5px 3px 5px 25px;
+        padding: 5px 3px 5px 1.5em;
 
         &:before {
             content: '';
-            white-space: pre;
         }
 
         &:not(.ng-select__item--disabled) {
