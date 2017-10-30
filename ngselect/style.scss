@@ -8,7 +8,9 @@ $box-padding: 12px 25px 12px 5px;
 }
 
 @mixin active-item() {
-    content: '\2714';
+    &:not(.ng-select__item--no-checkmark) {
+        content: '\2714';
+    }
     margin-left: -1.1em;
 }
 
