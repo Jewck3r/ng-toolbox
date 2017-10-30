@@ -1,7 +1,6 @@
 <ng-template #defaultItemContent let-entry="entry">
     <input *ngIf="box.name" type="radio" class="ng-select__control" name="{{ box.name }}" [value]="entry.value" [id]="'ngSelectItem_' + entry.value">
-    <label [for]="'ngSelectItem_' + entry.value" style="width: 100%; height: 100%;" [innerHTML]="box.toString ? box.toString(entry) : ' ' + entry.item">
-    </label>
+    <label [for]="'ngSelectItem_' + entry.value" style="width: 100%; height: 100%;" [innerHTML]="box.toString ? box.toString(entry) : ' ' + entry.item"></label>
 </ng-template>
 
 <ng-template #defaultSelectedContent let-entry="entry">
@@ -50,6 +49,7 @@
             [ngClass]="{
                 'ng-select__item': true,
                 'ng-select__item--active': entry.active,
+                'ng-select__item--no-checkmark': box.checkmark === false,
                 'ng-select__item--thumbnail': entry.image?.path && entry.image?.valid !== false
             }"
             (click)="select(entry)"

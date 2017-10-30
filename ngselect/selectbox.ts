@@ -4,6 +4,7 @@ export interface NgSelectBox<Type> {
     fallbackFirst?: boolean;
     defaultText?: string;
     name?: string;
+    checkmark?: boolean;
 }
 
 export interface NgSelectOption<Type> {
