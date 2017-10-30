@@ -36,7 +36,8 @@ export class NgSelectComponent implements OnChanges {
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['box']) {
-            this.selected = this.getSelected();
+            this.selected = null; // flush currently selected item
+            this.selected = this.getSelected(); // select new/previous item if present
         }
 
         if (changes['selectedItem']) {

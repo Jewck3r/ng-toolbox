@@ -11,7 +11,7 @@ $box-padding: 12px 25px 12px 5px;
     &:not(.ng-select__item--no-checkmark) {
         content: '\2714';
     }
-    margin-left: -1.1em;
+    margin-left: -.85em;
 }
 
 .ng-select {
@@ -58,7 +58,7 @@ $box-padding: 12px 25px 12px 5px;
         font-size: 1em;
         list-style: none;
         padding: 5px 3px 5px 1.5em;
-        white-space: nowrap;
+        white-space: normal;
 
         &:not(.ng-select__item--disabled) {
             cursor: pointer;
